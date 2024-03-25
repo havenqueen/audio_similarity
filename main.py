@@ -158,9 +158,9 @@ def get_args_parser():
 
     # For audioset
     parser.add_argument('--audio_exp', action='store_true', help='audio exp')
-    parser.add_argument("--data_train", type=str, default='/home/haven/Desktop/workspace/AudioMAE/fine_tuning_data/train2.json', help="training data json")
-    parser.add_argument("--data_eval", type=str, default='/home/haven/Desktop/workspace/AudioMAE/fine_tuning_data/valid.json', help="validation data json")
-    parser.add_argument("--label_csv", type=str, default='/home/haven/Desktop/workspace/AudioMAE/fine_tuning_data/class_labels_indices.csv', help="csv with class labels")
+    parser.add_argument("--data_train", type=str, default='sample.json', help="training data json")
+    parser.add_argument("--data_eval", type=str, default='sample.json', help="validation data json")
+    parser.add_argument("--label_csv", type=str, default='class_labels_indices.csv', help="csv with class labels")
     parser.add_argument('--freqm', help='frequency mask max length', type=int, default=96)
     parser.add_argument('--timem', help='time mask max length', type=int, default=24)
     #parser.add_argument("--mixup", type=float, default=0, help="how many (0-1) samples need to be mixup during training")
@@ -394,9 +394,13 @@ def main(args):
     misc.load_model(args=args, model_without_ddp=model_without_ddp, optimizer=optimizer, loss_scaler=loss_scaler)
 
     if args.eval:
-        test_stats = evaluate(data_loader_val, model, device)
-        print("test_stats")
-        print("*******************")
+        test_stats1, test_stats2 = evaluate(data_loader_val, model, device)
+        
+        with open('results1.json', 'w') as f:
+            json.dump([value.item() for value in test_stats1], f)
+
+        with open('results2.json', 'w') as f:
+            json.dump([value.item() for value in test_stats2], f)
         #print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
         exit(0)
 

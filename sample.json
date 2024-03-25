@@ -1,0 +1,5 @@
+{"data": [{"wav": "./sample_audio/Chinese_flute_1.mp3", "labels": "/m/04szw,/x/12,/m/0l14j_"},
+{"wav": "./sample_audio/Chinese_flute_2.mp3", "labels": "/m/04szw,/x/12,/m/0l14j_"},
+{"wav": "./sample_audio/Chinese_plucked_string_1.mp3", "labels": "/m/04szw,/x/12,/m/0fx80y"},
+{"wav": "./sample_audio/Korean_mallet_percussion_2.wav", "labels": "/m/04szw,/x/2,/m/0j45pbj"}]
+}
